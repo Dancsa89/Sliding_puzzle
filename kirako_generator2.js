@@ -1,3 +1,4 @@
+const table = require('table');
 let possibleNumbers = [];
 
 for(let i = 0; i < 9; i++) {
@@ -15,4 +16,7 @@ for(let y = 0; y < 3; y++) {
 		possibleNumbers.splice(pickedNumber, 1)
 	}
 }
-console.log(gameArea);
+
+let track = table.table(gameArea);
+
+console.log(track);
