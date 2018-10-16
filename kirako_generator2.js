@@ -1,12 +1,28 @@
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+const tablePackage = require('table');
 
-let gameAreaMatrix = [[]];
-	
-for(let y = 0; y <= 2; y++) {
-	for(let x = 0; x <= 2; x++) {
-		let pickedIndex = Math.floor(Math.random(numbers.length));
-		gameAreaMatrix[y][x] = numbers[pickedIndex];
-		numbers.pop(pickedIndex);
-	}
-}
-console.log(gameAreaMatrix);
+let possibleNumbers = [];
+
+const matrix = () => {
+  for (let i = 0; i < 9; i++) {
+    possibleNumbers[i] = i;
+  }
+};
+
+const generator = () => {
+  matrix();
+  let gameAreaMatrix = [];
+  let pickedNumber;
+
+  for (let y = 0; y <= 2; y++) {
+    gameAreaMatrix[y] = [];
+    for (let x = 0; x <= 2; x++) {
+      pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
+      gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
+      possibleNumbers.splice(pickedNumber, 1);
+    }
+  }
+  let track = tablePackage.table(gameAreaMatrix);
+  console.log(track);
+};
+
+generator();
