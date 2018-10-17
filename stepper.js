@@ -64,6 +64,7 @@ const stepping = () => {
             let gameAreaMatrixUp = gameAreaMatrix;
             let trackUp = tablePackage.table(gameAreaMatrixUp);
             console.log(trackUp);
+            break;
         }
       }
     }
