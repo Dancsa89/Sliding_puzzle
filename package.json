@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Dancsa89/Slidin_puzzle#readme",
   "dependencies": {
+    "readline-sync": "^1.4.9",
     "table": "^5.1.0"
   }
 }
