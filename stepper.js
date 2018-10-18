@@ -6,6 +6,11 @@ let possibleNumbers = [];
 const matrix = () => {
   for (let i = 0; i < 9; i++) {
     possibleNumbers[i] = i;
+    if (possibleNumbers[i] === 0) {
+      let zero = possibleNumbers[i];
+      
+
+    }
   }
 };
 
@@ -22,6 +27,7 @@ for (let y = 0; y <= 2; y++) {
     possibleNumbers.splice(pickedNumber, 1);
   }
 }
+
 let track = tablePackage.table(gameAreaMatrix);
 
 console.log(track);
@@ -31,6 +37,7 @@ const stepping = () => {
     for (let coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
       if (actualElement === 0) {
+
         let order = readlineSync.question('What is the order Master? ');
         switch (order) {
           case 'left':
