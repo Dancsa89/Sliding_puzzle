@@ -7,9 +7,7 @@ const matrix = () => {
   for (let i = 0; i < 9; i++) {
     possibleNumbers[i] = i;
     if (possibleNumbers[i] === 0) {
-      let zero = possibleNumbers[i];
-      
-
+      possibleNumbers[i] = ' ';
     }
   }
 };
@@ -36,8 +34,7 @@ const stepping = () => {
   for (let row = 0; row < gameAreaMatrix.length; row++) {
     for (let coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
-      if (actualElement === 0) {
-
+      if (actualElement === ' ') {
         let order = readlineSync.question('What is the order Master? ');
         switch (order) {
           case 'left':
@@ -47,9 +44,15 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempRight;
               let gameAreaMatrixRight = gameAreaMatrix;
               let trackRight = tablePackage.table(gameAreaMatrixRight);
+              console.clear(gameAreaMatrix);
               console.log(trackRight);
             } else {
+              let gameAreaMatrixRight = gameAreaMatrix;
+              let trackRight = tablePackage.table(gameAreaMatrixRight);
+              console.clear(gameAreaMatrix);
+              console.log(trackRight);
               console.log('Wrong Way! Need new order. ');
+
             }
             break;
           case 'right':
@@ -59,8 +62,13 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempLeft;
               let gameAreaMatrixLeft = gameAreaMatrix;
               let trackLeft = tablePackage.table(gameAreaMatrixLeft);
+              console.clear(gameAreaMatrix);
               console.log(trackLeft);
             } else {
+              let gameAreaMatrixLeft = gameAreaMatrix;
+              let trackLeft = tablePackage.table(gameAreaMatrixLeft);
+              console.clear(gameAreaMatrix);
+              console.log(trackLeft);
               console.log('Wrong Way! Need new order. ');
             }
             break;
@@ -71,8 +79,13 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempDown;
               let gameAreaMatrixDown = gameAreaMatrix;
               let trackDown = tablePackage.table(gameAreaMatrixDown);
+              console.clear(gameAreaMatrix);
               console.log(trackDown);
             } else {
+              let gameAreaMatrixDown = gameAreaMatrix;
+              let trackDown = tablePackage.table(gameAreaMatrixDown);
+              console.clear(gameAreaMatrix);
+              console.log(trackDown);
               console.log('Wrong Way! Need new order. ');
             }
             break;
@@ -83,8 +96,13 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempUp;
               let gameAreaMatrixUp = gameAreaMatrix;
               let trackUp = tablePackage.table(gameAreaMatrixUp);
+              console.clear(gameAreaMatrix);
               console.log(trackUp);
             } else {
+              let gameAreaMatrixUp = gameAreaMatrix;
+              let trackUp = tablePackage.table(gameAreaMatrixUp);
+              console.clear(gameAreaMatrix);
+              console.log(trackUp);
               console.log('Wrong Way! Need new order. ');
             }
             break;
@@ -92,12 +110,12 @@ const stepping = () => {
       }
     }
   }
-}
+};
 
 while (true) {
   stepping();
 }
 
-  /*if (gameAreaMatrix[j][k] = gameAreaMatrix[j].length) {
+/* if (gameAreaMatrix[j][k] = gameAreaMatrix[j].length) {
               console.log('Fail, need new order!');
-            }*/
+            } */
