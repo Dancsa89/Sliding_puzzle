@@ -1,5 +1,6 @@
 const tablePackage = require('table');
 const readlineSync = require('readline-sync');
+const keypress = require('keypress');
 
 let possibleNumbers = [];
 
@@ -30,14 +31,17 @@ let track = tablePackage.table(gameAreaMatrix);
 
 console.log(track);
 
+let row = 0;
+let coll = 0;
+
 const stepping = () => {
-  for (let row = 0; row < gameAreaMatrix.length; row++) {
-    for (let coll = 0; coll < gameAreaMatrix[row].length; coll++) {
+  for (row = 0; row < gameAreaMatrix.length; row++) {
+    for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
       if (actualElement === ' ') {
         let order = readlineSync.question('What is the order Master? ');
         switch (order) {
-          case 'left':
+          case 'a':
             if (coll <= 1) {
               let tempRight = gameAreaMatrix[row][coll + 1];
               gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
@@ -52,10 +56,9 @@ const stepping = () => {
               console.clear(gameAreaMatrix);
               console.log(trackRight);
               console.log('Wrong Way! Need new order. ');
-
             }
             break;
-          case 'right':
+          case 'd':
             if (coll >= 1) {
               let tempLeft = gameAreaMatrix[row][coll - 1];
               gameAreaMatrix[row][coll - 1] = gameAreaMatrix[row][coll];
@@ -72,7 +75,7 @@ const stepping = () => {
               console.log('Wrong Way! Need new order. ');
             }
             break;
-          case 'up':
+          case 'w':
             if (row <= 1) {
               let tempDown = gameAreaMatrix[row + 1][coll];
               gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
@@ -89,7 +92,7 @@ const stepping = () => {
               console.log('Wrong Way! Need new order. ');
             }
             break;
-          case 'down':
+          case 's':
             if (row >= 1) {
               let tempUp = gameAreaMatrix[row - 1][coll];
               gameAreaMatrix[row - 1][coll] = gameAreaMatrix[row][coll];
