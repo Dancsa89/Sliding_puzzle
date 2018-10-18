@@ -42,7 +42,11 @@ const stepping = () => {
               let trackRight = tablePackage.table(gameAreaMatrixRight);
               console.log(trackRight);
             } else {
+              let gameAreaMatrixRight = gameAreaMatrix;
+              let trackRight = tablePackage.table(gameAreaMatrixRight);
+              console.log(trackRight);
               console.log('Wrong Way! Need new order. ');
+
             }
             break;
           case 'right':
@@ -54,6 +58,9 @@ const stepping = () => {
               let trackLeft = tablePackage.table(gameAreaMatrixLeft);
               console.log(trackLeft);
             } else {
+              let gameAreaMatrixLeft = gameAreaMatrix;
+              let trackLeft = tablePackage.table(gameAreaMatrixLeft);
+              console.log(trackLeft);
               console.log('Wrong Way! Need new order. ');
             }
             break;
@@ -66,6 +73,9 @@ const stepping = () => {
               let trackDown = tablePackage.table(gameAreaMatrixDown);
               console.log(trackDown);
             } else {
+              let gameAreaMatrixDown = gameAreaMatrix;
+              let trackDown = tablePackage.table(gameAreaMatrixDown);
+              console.log(trackDown);
               console.log('Wrong Way! Need new order. ');
             }
             break;
@@ -78,6 +88,9 @@ const stepping = () => {
               let trackUp = tablePackage.table(gameAreaMatrixUp);
               console.log(trackUp);
             } else {
+              let gameAreaMatrixUp = gameAreaMatrix;
+              let trackUp = tablePackage.table(gameAreaMatrixUp);
+              console.log(trackUp);             
               console.log('Wrong Way! Need new order. ');
             }
             break;
@@ -85,7 +98,7 @@ const stepping = () => {
       }
     }
   }
-}
+};
 
 while (true) {
   stepping();
