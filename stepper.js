@@ -1,6 +1,5 @@
 const tablePackage = require('table');
 const readlineSync = require('readline-sync');
-const stepHelp = require('./stepperHelper.js');
 
 let gameAreaMatrix = [];
 let pickedNumber;
