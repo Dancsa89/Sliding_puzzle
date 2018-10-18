@@ -33,12 +33,7 @@ const gameArea = () => {
   console.log(track);
 };
 
-module.exports = {
-  gameArea: gameArea
-};
-
 const stepping = () => {
-  let gameAreaMatrix = gameArea();
   for (let row = 0; row < gameAreaMatrix.length; row++) {
     for (let coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
