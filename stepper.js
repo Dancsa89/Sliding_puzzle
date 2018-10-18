@@ -6,6 +6,9 @@ let possibleNumbers = [];
 const matrix = () => {
   for (let i = 0; i < 9; i++) {
     possibleNumbers[i] = i;
+    if (possibleNumbers[i] === 0) {
+      possibleNumbers[i] = ' ';
+    }
   }
 };
 
@@ -30,7 +33,7 @@ const stepping = () => {
   for (let row = 0; row < gameAreaMatrix.length; row++) {
     for (let coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
-      if (actualElement === 0) {
+      if (actualElement === ' ') {
         let order = readlineSync.question('What is the order Master? ');
         switch (order) {
           case 'left':
