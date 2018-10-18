@@ -2,6 +2,8 @@ const tablePackage = require('table');
 const readlineSync = require('readline-sync');
 
 let possibleNumbers = [];
+let gameAreaMatrix = [];
+let pickedNumber;
 
 const matrix = () => {
   for (let i = 0; i < 9; i++) {
@@ -12,24 +14,31 @@ const matrix = () => {
   }
 };
 
-matrix();
-
-let gameAreaMatrix = [];
-let pickedNumber;
-
-for (let y = 0; y <= 2; y++) {
-  gameAreaMatrix[y] = [];
-  for (let x = 0; x <= 2; x++) {
-    pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
-    gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
-    possibleNumbers.splice(pickedNumber, 1);
+const matrixGenerator = () => {
+  for (let y = 0; y <= 2; y++) {
+    gameAreaMatrix[y] = [];
+    for (let x = 0; x <= 2; x++) {
+      pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
+      gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
+      possibleNumbers.splice(pickedNumber, 1);
+    }
   }
-}
-let track = tablePackage.table(gameAreaMatrix);
+};
 
-console.log(track);
+const gameArea = () => {
+  matrix();
+  matrixGenerator();
+
+  let track = tablePackage.table(gameAreaMatrix);
+  console.log(track);
+};
+
+module.exports = {
+  gameArea: gameArea
+};
 
 const stepping = () => {
+  let gameAreaMatrix = gameArea();
   for (let row = 0; row < gameAreaMatrix.length; row++) {
     for (let coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
@@ -51,7 +60,6 @@ const stepping = () => {
               console.clear(gameAreaMatrix);
               console.log(trackRight);
               console.log('Wrong Way! Need new order. ');
-
             }
             break;
           case 'right':
@@ -114,7 +122,3 @@ const stepping = () => {
 while (true) {
   stepping();
 }
-
-/* if (gameAreaMatrix[j][k] = gameAreaMatrix[j].length) {
-              console.log('Fail, need new order!');
-            } */
