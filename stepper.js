@@ -40,6 +40,7 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempRight;
               let gameAreaMatrixRight = gameAreaMatrix;
               let trackRight = tablePackage.table(gameAreaMatrixRight);
+              console.clear(gameAreaMatrix);
               console.log(trackRight);
             } else {
               let gameAreaMatrixRight = gameAreaMatrix;
@@ -56,6 +57,7 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempLeft;
               let gameAreaMatrixLeft = gameAreaMatrix;
               let trackLeft = tablePackage.table(gameAreaMatrixLeft);
+              console.clear(gameAreaMatrix);
               console.log(trackLeft);
             } else {
               let gameAreaMatrixLeft = gameAreaMatrix;
@@ -71,6 +73,7 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempDown;
               let gameAreaMatrixDown = gameAreaMatrix;
               let trackDown = tablePackage.table(gameAreaMatrixDown);
+              console.clear(gameAreaMatrix);
               console.log(trackDown);
             } else {
               let gameAreaMatrixDown = gameAreaMatrix;
@@ -86,6 +89,7 @@ const stepping = () => {
               gameAreaMatrix[row][coll] = tempUp;
               let gameAreaMatrixUp = gameAreaMatrix;
               let trackUp = tablePackage.table(gameAreaMatrixUp);
+              console.clear(gameAreaMatrix);
               console.log(trackUp);
             } else {
               let gameAreaMatrixUp = gameAreaMatrix;
@@ -104,6 +108,6 @@ while (true) {
   stepping();
 }
 
-  /*if (gameAreaMatrix[j][k] = gameAreaMatrix[j].length) {
+/* if (gameAreaMatrix[j][k] = gameAreaMatrix[j].length) {
               console.log('Fail, need new order!');
-            }*/
+            } */
