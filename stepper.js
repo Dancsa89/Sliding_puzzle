@@ -33,7 +33,7 @@ const stepping = () => {
       if (actualElement === 0) {
         let order = readlineSync.question('What is the order Master? ');
         switch (order) {
-          case 'right':
+          case 'left':
             if (coll <= 1) {
               let tempRight = gameAreaMatrix[row][coll + 1];
               gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
@@ -45,7 +45,7 @@ const stepping = () => {
               console.log('Wrong Way! Need new order. ');
             }
             break;
-          case 'left':
+          case 'right':
             if (coll >= 1) {
               let tempLeft = gameAreaMatrix[row][coll - 1];
               gameAreaMatrix[row][coll - 1] = gameAreaMatrix[row][coll];
@@ -57,7 +57,7 @@ const stepping = () => {
               console.log('Wrong Way! Need new order. ');
             }
             break;
-          case 'down':
+          case 'up':
             if (row <= 1) {
               let tempDown = gameAreaMatrix[row + 1][coll];
               gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
@@ -69,7 +69,7 @@ const stepping = () => {
               console.log('Wrong Way! Need new order. ');
             }
             break;
-          case 'up':
+          case 'down':
             if (row >= 1) {
               let tempUp = gameAreaMatrix[row - 1][coll];
               gameAreaMatrix[row - 1][coll] = gameAreaMatrix[row][coll];
