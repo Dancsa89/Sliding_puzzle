@@ -103,15 +103,6 @@ const moveDown = () => {
     console.log('Wrong Way! Need new order. ');
   }
 };
-const moveLeftkey = () => {
-  process.stdin.on('keypress'), function (ch, key) {
-    if (key) {
-      if (key.name === '[D') {
-        moveLeft();
-      }
-    }
-  }
-}
 
 const stepping = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
@@ -120,16 +111,16 @@ const stepping = () => {
       if (actualElement === ' ') {
         let order = readlineSync.question('Use the arrow keys to move the numbers! ');
         switch (order) {
-          case ('[D'):
-            moveLeftkey();
+          case ('a'):
+            moveLeft();
             break;
-          case ('[C'):
+          case ('d'):
             moveRight();
             break;
-          case ('[A'):
+          case ('w'):
             moveUp();
             break;
-          case ('[B'):
+          case ('s'):
             moveDown();
             break;
         }
