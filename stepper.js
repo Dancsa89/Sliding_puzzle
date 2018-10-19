@@ -36,32 +36,11 @@ const gameArea = () => {
   generator();
 };
 
-const clearLeft = () => {
-  let gameAreaMatrixRight = gameAreaMatrix;
-  let trackRight = tablePackage.table(gameAreaMatrixRight);
-  console.clear(gameAreaMatrix);
-  console.log(trackRight);
-};
-
-const clearRight = () => {
+const clearArea = () => {
   let gameAreaMatrixLeft = gameAreaMatrix;
-  let trackLeft = tablePackage.table(gameAreaMatrixLeft);
+  let trackArea = tablePackage.table(gameAreaMatrixLeft);
   console.clear(gameAreaMatrix);
-  console.log(trackLeft);
-};
-
-const clearUP = () => {
-  let gameAreaMatrixDown = gameAreaMatrix;
-  let trackDown = tablePackage.table(gameAreaMatrixDown);
-  console.clear(gameAreaMatrix);
-  console.log(trackDown);
-};
-
-const clearDown = () => {
-  let gameAreaMatrixUp = gameAreaMatrix;
-  let trackUp = tablePackage.table(gameAreaMatrixUp);
-  console.clear(gameAreaMatrix);
-  console.log(trackUp);
+  console.log(trackArea);
 };
 
 const moveLeft = () => {
@@ -69,9 +48,9 @@ const moveLeft = () => {
     let tempRight = gameAreaMatrix[row][coll + 1];
     gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempRight;
-    clearLeft();
+    clearArea();
   } else {
-    clearLeft();
+    clearArea();
     console.log('Wrong Way! Need new order. ');
   }
 };
@@ -81,9 +60,9 @@ const moveRight = () => {
     let tempLeft = gameAreaMatrix[row][coll - 1];
     gameAreaMatrix[row][coll - 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempLeft;
-    clearRight();
+    clearArea();
   } else {
-    clearRight();
+    clearArea();
     console.log('Wrong Way! Need new order. ');
   }
 };
@@ -93,9 +72,9 @@ const moveUp = () => {
     let tempDown = gameAreaMatrix[row + 1][coll];
     gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempDown;
-    clearUP();
+    clearArea();
   } else {
-    clearUP();
+    clearArea();
     console.log('Wrong Way! Need new order. ');
   }
 };
@@ -105,9 +84,9 @@ const moveDown = () => {
     let tempUp = gameAreaMatrix[row - 1][coll];
     gameAreaMatrix[row - 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempUp;
-    clearDown();
+    clearArea();
   } else {
-    clearDown();
+    clearArea();
     console.log('Wrong Way! Need new order. ');
   }
 };
