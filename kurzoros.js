@@ -1,6 +1,6 @@
 const tablePackage = require('table');
 const readlineSync = require('readline-sync');
-const keypress = require('keypress');
+let keypress = require('keypress');
 keypress(process.stdin);
 
 let possibleNumbers = [];
@@ -102,9 +102,17 @@ const moveDown = () => {
     console.log(trackUp);
     console.log('Wrong Way! Need new order. ');
   }
+};
+const moveLeftkey = () => {
+  process.stdin.on('keypress'), function (ch, key) {
+    if (key) {
+      if (key.name === '[D') {
+        moveLeft();
+      }
+    }
+  }
 }
 
-}
 const stepping = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
     for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
@@ -113,7 +121,7 @@ const stepping = () => {
         let order = readlineSync.question('Use the arrow keys to move the numbers! ');
         switch (order) {
           case ('[D'):
-            moveLeft();
+            moveLeftkey();
             break;
           case ('[C'):
             moveRight();

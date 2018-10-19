@@ -109,6 +109,9 @@ const stepping = () => {
               console.log('Wrong Way! Need new order. ');
             }
             break;
+          default:
+            console.log('Wrong order, try again! ');
+            break;
         }
       }
     }
