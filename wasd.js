@@ -90,7 +90,7 @@ const moveDown = () => {
     clearArea();
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    console.log('Wrong way! Need new order! ');
   }
 };
 
@@ -105,26 +105,26 @@ const stepping = () => {
       }
     }
   }
-}
+};
 
 process.stdin.on('keypress', function (c, key) {
   if (key.name == 'a') {
     moveLeft();
+    stepping();
   }
   else if (key.name == 'd') {
     moveRight();
+    stepping();
   }
   else if (key.name == 's') {
     moveDown();
+    stepping();
   }
   else if (key.name == 'w') {
     moveUp();
-  } else {
-    console.log('Wrong order, try again!');
+    stepping();
   }
-  stepping();
+  else if (key.name == 'x') {
+    process.stdin.setRawMode(false);
+  }
 });
-
-/*while (true) {
-  stepping();
-}*/
