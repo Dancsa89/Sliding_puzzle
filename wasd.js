@@ -96,7 +96,21 @@ const moveDown = () => {
 
 gameArea();
 
-const stepping = () => {
+const help = () => {
+  let helpTableContent = [
+    ['W', 'Move up'],
+    ['A', 'Move left'],
+    ['S', 'Move Right'],
+    ['D', 'Move Down'],
+    ['H', 'Help'],
+    ['End', 'Back to the Main Menu']
+  ];
+  let helpTable = tablePackage.table(helpTableContent);
+  console.log(helpTable);
+  return;
+}
+
+const findNull = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
     for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
@@ -105,26 +119,34 @@ const stepping = () => {
       }
     }
   }
-};
+}
 
-process.stdin.on('keypress', function (c, key) {
-  if (key.name == 'a') {
-    moveLeft();
-    stepping();
-  }
-  else if (key.name == 'd') {
-    moveRight();
-    stepping();
-  }
-  else if (key.name == 's') {
-    moveDown();
-    stepping();
-  }
-  else if (key.name == 'w') {
-    moveUp();
-    stepping();
-  }
-  else if (key.name == 'x') {
-    process.stdin.setRawMode(false);
-  }
-});
+const stepping = () => {
+  process.stdin.on('keypress', function (c, key) {
+    if (key.name == 'a') {
+      findNull();
+      moveLeft();
+    }
+    else if (key.name == 'd') {
+      findNull();
+      moveRight();
+    }
+    else if (key.name == 's') {
+      findNull();
+      moveDown();
+    }
+    else if (key.name == 'w') {
+      findNull();
+      moveUp();
+    }
+    else if (key.name == 'h') {
+      help();
+    }
+    else if (key.name == 'end') {
+      console.log('Vissza a főmenübe')
+      process.exit(true);
+    }
+  });
+}
+
+stepping();
