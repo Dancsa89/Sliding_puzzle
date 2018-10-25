@@ -13,7 +13,7 @@ let row = 0;
 let coll = 0;
 
 const matrix = () => {
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 4; i++) {
     possibleNumbers[i] = i;
     if (possibleNumbers[i] === 0) {
       possibleNumbers[i] = ' ';
@@ -23,9 +23,9 @@ const matrix = () => {
 
 const generator = () => {
   matrix();
-  for (let y = 0; y <= 2; y++) {
+  for (let y = 0; y <= 1; y++) {
     gameAreaMatrix[y] = [];
-    for (let x = 0; x <= 2; x++) {
+    for (let x = 0; x <= 1; x++) {
       pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
       gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
       possibleNumbers.splice(pickedNumber, 1);
@@ -48,7 +48,7 @@ const clearArea = () => {
 };
 
 const moveLeft = () => {
-  if (coll <= 1) {
+  if (coll <= 0) {
     let tempRight = gameAreaMatrix[row][coll + 1];
     gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempRight;
@@ -74,7 +74,7 @@ const moveRight = () => {
 };
 
 const moveUp = () => {
-  if (row <= 1) {
+  if (row <= 0) {
     let tempDown = gameAreaMatrix[row + 1][coll];
     gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempDown;
@@ -99,8 +99,6 @@ const moveDown = () => {
   }
 };
 
-//gameArea();
-
 const findNull = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
     for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
@@ -110,34 +108,60 @@ const findNull = () => {
       }
     }
   }
-}
+};
 
 const stepping = () => {
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 'left') {
       findNull();
       moveLeft();
-    }
-    else if (key.name === 'right') {
+      writeifend();
+    } else if (key.name === 'right') {
       findNull();
       moveRight();
-    }
-    else if (key.name === 'down') {
+      writeifend();
+    } else if (key.name === 'down') {
       findNull();
       moveDown();
-    }
-    else if (key.name === 'up') {
+      writeifend();
+    } else if (key.name === 'up') {
       findNull();
       moveUp();
-    }
-    else if (key.name === 'h') {
+      writeifend();
+    } else if (key.name === 'h') {
       help();
-    }
-    else if (key.name === 'end') {
+    } else if (key.name === 'end') {
       menu.start();
     }
   });
-}
+};
+
+const end = () => {
+  let result = true;
+  let number = 1;
+  for (let i = 0; i < gameAreaMatrix.length; i++) {
+    for (let j = 0; j < gameAreaMatrix.length; j++) {
+      if (gameAreaMatrix[i][j] !== number && gameAreaMatrix[i][j] !== ' ') {
+        result = false;
+      }
+      number++;
+    }
+  } if (result) {
+    if (gameAreaMatrix[gameAreaMatrix.length - 1][gameAreaMatrix.length - 1] === ' ') {
+      result = true;
+    } else {
+      result = false;
+    }
+  }
+  return result;
+};
+
+const writeifend = () => {
+  if (end()) {
+    console.clear(gameAreaMatrix);
+    console.log('You win!');
+  }
+};
 
 module.exports = {
   gameArea,
