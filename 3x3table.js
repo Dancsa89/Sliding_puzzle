@@ -1,6 +1,6 @@
 const tablePackage = require('table');
 let help = require('./help');
-let start = require('./menu');
+let menu = require('./menu');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -53,6 +53,7 @@ const moveLeft = () => {
     gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempRight;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
@@ -65,6 +66,7 @@ const moveRight = () => {
     gameAreaMatrix[row][coll - 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempLeft;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
@@ -77,6 +79,7 @@ const moveUp = () => {
     gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempDown;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
@@ -89,13 +92,14 @@ const moveDown = () => {
     gameAreaMatrix[row - 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempUp;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
   }
 };
 
-gameArea();
+//gameArea();
 
 const findNull = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
@@ -110,32 +114,32 @@ const findNull = () => {
 
 const stepping = () => {
   process.stdin.on('keypress', function (c, key) {
-    if (key.name == 'a') {
+    if (key.name === 'left') {
       findNull();
       moveLeft();
     }
-    else if (key.name == 'd') {
+    else if (key.name === 'right') {
       findNull();
       moveRight();
     }
-    else if (key.name == 's') {
+    else if (key.name === 'down') {
       findNull();
       moveDown();
     }
-    else if (key.name == 'w') {
+    else if (key.name === 'up') {
       findNull();
       moveUp();
     }
-    else if (key.name == 'h') {
+    else if (key.name === 'h') {
       help();
     }
-    else if (key.name == 'end') {
-      start();
+    else if (key.name === 'end') {
+      menu.start();
     }
   });
 }
 
-stepping();
-
-//module.exports = gameArea;
-//module.exports = stepping;
+module.exports = {
+  gameArea,
+  stepping
+};
