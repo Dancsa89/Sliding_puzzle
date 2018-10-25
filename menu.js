@@ -1,5 +1,7 @@
 const table = require('table');
-const readlineSync = require('readline-sync');
+//let tableThree = require('./3x3table');
+//let tableFour = require('./4x4table');
+//let tableFive = require('./5x5table');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -10,7 +12,8 @@ const start = () => {
 		['Sliding Puzzle'],
 		['Netti Rencsó Dancsa Entertainment'],
 		['@2018'],
-		['Press Home to start!']
+		['Press S to start'],
+		['For HELP in game press H']
 	];
 	let startTableconfig = {
 		columns: {
@@ -23,7 +26,7 @@ const start = () => {
 	let startTableView = table.table(startTabledata, startTableconfig);
 	console.log(startTableView);
 	process.stdin.on('keypress', function (c, key) {
-		if (key.name == 'home') {
+		if (key.name == 's') {
 			choose();
 		}
 	});
@@ -32,7 +35,7 @@ const start = () => {
 
 const choose = () => {
 	let chooseTable = [
-		['For table 2x2', 'Press a '],
+		['For table 3x3', 'Press a '],
 		['For table 4x4', 'Press b '],
 		['For table 5x5', 'Press c ']
 	];
@@ -49,18 +52,15 @@ const choose = () => {
 	console.log(chooseTableViev);
 	process.stdin.on('keypress', function (c, key) {
 		if (key.name == 'a') {
-			console.log('3x3-as tábla');
-			process.exit(true);
+			tableThree(true);
 		}
 		else if (key.name == 'b') {
-			console.log('4x4-es tábla');
-			process.exit(true);
+			tableFour(true);
 		}
 		else if (key.name == 'c') {
-			console.log('5x5-ös tábla');
-			process.exit(true);
+			tableFive(true);
 		}
 	});
 };
 
-start();
+module.exports = start;

@@ -1,30 +1,26 @@
-let matrix = [
-  [5, 2, 3],
-  [4, 0, 6],
-  [7, 8, 1]
-];
-
 const end = () => {
   let result = true;
   let number = 1;
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix.length; j++) {
-      if (matrix[i][j] !== number) {
+  for (let i = 0; i < gameAreaMatrix.length; i++) {
+    for (let j = 0; j < gameAreaMatrix.length; j++) {
+      if (gameAreaMatrix[i][j] !== number) {
         result = false;
-      } if (matrix[i][j] === 0) {
+      }
+      if (i === gameAreaMatrix.length - 1 && j === gameAreaMatrix.length - 1 && gameAreaMatrix[i][j] === ' ') {
         result = true;
       }
       number++;
     }
   } return result;
-};
-
-end();
-
-const writeifend = () => {
+ };
+ 
+ const writeIfEnd = () => {
   if (end()) {
     console.log('You win!');
+  } else {
+    console.log('Buzgerátor');
   }
-};
+ };
 
-writeifend();
+module.exports = end;
+module.exports = writeIfEnd;

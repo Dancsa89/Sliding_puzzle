@@ -1,5 +1,6 @@
 const tablePackage = require('table');
-const readlineSync = require('readline-sync');
+let help = require('./help');
+let start = require('./menu');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -96,7 +97,7 @@ const moveDown = () => {
 
 gameArea();
 
-const stepping = () => {
+const findNull = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
     for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
@@ -107,24 +108,34 @@ const stepping = () => {
   }
 }
 
-process.stdin.on('keypress', function (c, key) {
-  if (key.name == 'a') {
-    moveLeft();
-  }
-  else if (key.name == 'd') {
-    moveRight();
-  }
-  else if (key.name == 's') {
-    moveDown();
-  }
-  else if (key.name == 'w') {
-    moveUp();
-  } else {
-    console.log('Wrong order, try again!');
-  }
-  stepping();
-});
+const stepping = () => {
+  process.stdin.on('keypress', function (c, key) {
+    if (key.name == 'a') {
+      findNull();
+      moveLeft();
+    }
+    else if (key.name == 'd') {
+      findNull();
+      moveRight();
+    }
+    else if (key.name == 's') {
+      findNull();
+      moveDown();
+    }
+    else if (key.name == 'w') {
+      findNull();
+      moveUp();
+    }
+    else if (key.name == 'h') {
+      help();
+    }
+    else if (key.name == 'end') {
+      start();
+    }
+  });
+}
 
-/*while (true) {
-  stepping();
-}*/
+stepping();
+
+//module.exports = gameArea;
+//module.exports = stepping;
