@@ -157,7 +157,20 @@ const end = () => {
 const writeifend = () => {
   if (end()) {
     console.clear(gameAreaMatrix);
-    console.log('You win!');
+    let chooseTable = [
+      ['You solved it!'],
+      ['You are a HERO!'],
+      ['Press X if you would like to try a more advance level!']
+    ];
+    let chooseTableconfig = {
+      columns: {
+        0: {
+          alignment: 'center'
+        }
+      }
+    };
+    let chooseTableView = tablePackage.table(chooseTable, chooseTableconfig);
+    console.log(chooseTableView);
   }
 };
 

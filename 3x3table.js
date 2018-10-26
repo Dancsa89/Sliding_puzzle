@@ -159,7 +159,7 @@ const writeifend = () => {
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],
-      ['Press x if you would like to try a more advance level!']
+      ['Press X if you would like to try a more advance level!']
     ];
     let chooseTableconfig = {
       columns: {
