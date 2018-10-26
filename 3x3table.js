@@ -12,7 +12,7 @@ let row = 0;
 let coll = 0;
 
 const matrix = () => {
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 4; i++) {
     possibleNumbers[i] = i;
     if (possibleNumbers[i] === 0) {
       possibleNumbers[i] = ' ';
@@ -22,9 +22,9 @@ const matrix = () => {
 
 const generator = () => {
   matrix();
-  for (let y = 0; y <= 2; y++) {
+  for (let y = 0; y <= 1; y++) {
     gameAreaMatrix[y] = [];
-    for (let x = 0; x <= 2; x++) {
+    for (let x = 0; x <= 1; x++) {
       pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
       gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
       possibleNumbers.splice(pickedNumber, 1);
@@ -47,7 +47,7 @@ const clearArea = () => {
 };
 
 const moveLeft = () => {
-  if (coll <= 1) {
+  if (coll <= 0) {
     let tempRight = gameAreaMatrix[row][coll + 1];
     gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempRight;
@@ -73,7 +73,7 @@ const moveRight = () => {
 };
 
 const moveUp = () => {
-  if (row <= 1) {
+  if (row <= 0) {
     let tempDown = gameAreaMatrix[row + 1][coll];
     gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempDown;
@@ -110,6 +110,7 @@ const findNull = () => {
 };
 
 const stepping = () => {
+  console.log('For HELP press H');
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 'left') {
       findNull();
@@ -155,13 +156,13 @@ const end = () => {
   return result;
 };
 
-const writeifend = (gameAreaMatrix) => {
+const writeifend = () => {
   if (end()) {
     console.clear(gameAreaMatrix);
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],
-      ['Press X if you would like to try more advance level']
+      ['Press X if you would like to try a more advance level!']
     ];
     let chooseTableconfig = {
       columns: {
@@ -176,6 +177,6 @@ const writeifend = (gameAreaMatrix) => {
 };
 
 module.exports = {
-  stepping,
-  gameArea
+  gameArea,
+  stepping
 };
