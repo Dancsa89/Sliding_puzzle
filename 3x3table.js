@@ -1,5 +1,6 @@
 const tablePackage = require('table');
-const readlineSync = require('readline-sync');
+let help = require('./help');
+let menu = require('./menu');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -52,6 +53,7 @@ const moveLeft = () => {
     gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempRight;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
@@ -64,6 +66,7 @@ const moveRight = () => {
     gameAreaMatrix[row][coll - 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempLeft;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
@@ -76,6 +79,7 @@ const moveUp = () => {
     gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempDown;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
@@ -88,15 +92,14 @@ const moveDown = () => {
     gameAreaMatrix[row - 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempUp;
     clearArea();
+    console.log('For HELP press H');
   } else {
     clearArea();
     console.log('Wrong Way! Need new order. ');
   }
 };
 
-gameArea();
-
-const stepping = () => {
+const findNull = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
     for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
       let actualElement = gameAreaMatrix[row][coll];
@@ -105,26 +108,88 @@ const stepping = () => {
       }
     }
   }
-}
+};
 
-process.stdin.on('keypress', function (c, key) {
-  if (key.name == 'a') {
-    moveLeft();
-  }
-  else if (key.name == 'd') {
-    moveRight();
-  }
-  else if (key.name == 's') {
-    moveDown();
-  }
-  else if (key.name == 'w') {
-    moveUp();
-  } else {
-    console.log('Wrong order, try again!');
-  }
-  stepping();
-});
+const stepping = () => {
+  process.stdin.on('keypress', function (c, key) {
+    if (key.name === 'left') {
+      findNull();
+      moveLeft();
+      writeifend();
+    } else if (key.name === 'right') {
+      findNull();
+      moveRight();
+      writeifend();
+    } else if (key.name === 'down') {
+      findNull();
+      moveDown();
+      writeifend();
+    } else if (key.name === 'up') {
+      findNull();
+      moveUp();
+      writeifend();
+    } else if (key.name === 'h') {
+      help();
+    } else if (key.name === 'end') {
+      menu.start();
+    }
+  });
+};
 
-/*while (true) {
-  stepping();
-}*/
+<<<<<<< HEAD:wasd.js
+stepping();
+
+const end = () => {
+  let result = false;
+  let number = 1;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (matrix[i][j] !== number) {
+        result = false;
+      } if (matrix[i][j] === 0) {
+        result = true;
+      }
+      number++;
+    }
+  } return result;
+};
+
+const writeifend = () => {
+  if (end()) {
+=======
+const end = () => {
+  let result = true;
+  let number = 1;
+  for (let i = 0; i < gameAreaMatrix.length; i++) {
+    for (let j = 0; j < gameAreaMatrix.length; j++) {
+      if (gameAreaMatrix[i][j] !== number && gameAreaMatrix[i][j] !== ' ') {
+        result = false;
+      }
+      number++;
+    }
+  } if (result) {
+    if (gameAreaMatrix[gameAreaMatrix.length - 1][gameAreaMatrix.length - 1] === ' ') {
+      result = true;
+    } else {
+      result = false;
+    }
+  }
+  return result;
+};
+
+const writeifend = (gameAreaMatrix) => {
+  if (end()) {
+    console.clear(gameAreaMatrix);
+>>>>>>> fae8eff32f6343e92e51330cbd81cf0db5fcd11e:3x3table.js
+    console.log('You win!');
+  }
+};
+
+<<<<<<< HEAD:wasd.js
+writeifend();
+=======
+module.exports = {
+  stepping,
+  gameArea
+};
+>>>>>>> fae8eff32f6343e92e51330cbd81cf0db5fcd11e:3x3table.js
