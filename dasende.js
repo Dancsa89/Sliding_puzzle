@@ -27,7 +27,7 @@ const writeifend = () => {
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],
-      ['Do you want to solve more difficulty Sliding Puzzle?' + ' Press X and choose']
+      ['Do you want to solve more difficulty Sliding Puzzle?' + ' Press X and start a new game!']
     ];
     let chooseTableconfig = {
       columns: {

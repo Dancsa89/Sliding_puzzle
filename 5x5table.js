@@ -1,6 +1,5 @@
 const tablePackage = require('table');
 let help = require('./help');
-let menu = require('./menu');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -131,8 +130,6 @@ const stepping = () => {
       writeifend();
     } else if (key.name === 'h') {
       help();
-    } else if (key.name === 'end') {
-      menu.start();
     }
   });
 };
