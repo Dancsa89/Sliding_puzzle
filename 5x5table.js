@@ -5,7 +5,7 @@ keypress(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
 
-let gameAreaMatrix = [];
+let gameAreaMatrix3 = [];
 let pickedNumber;
 let possibleNumbers = [];
 let row = 0;
@@ -23,14 +23,14 @@ const matrix = () => {
 const generator = () => {
   matrix();
   for (let y = 0; y <= 4; y++) {
-    gameAreaMatrix[y] = [];
+    gameAreaMatrix3[y] = [];
     for (let x = 0; x <= 4; x++) {
       pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
-      gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
+      gameAreaMatrix3[y][x] = possibleNumbers[pickedNumber];
       possibleNumbers.splice(pickedNumber, 1);
     }
   }
-  let track = tablePackage.table(gameAreaMatrix);
+  let track = tablePackage.table(gameAreaMatrix3);
   console.log(track);
 };
 
@@ -40,17 +40,17 @@ const gameArea = () => {
 };
 
 const clearArea = () => {
-  let gameAreaMatrixLeft = gameAreaMatrix;
+  let gameAreaMatrixLeft = gameAreaMatrix3;
   let trackArea = tablePackage.table(gameAreaMatrixLeft);
-  console.clear(gameAreaMatrix);
+  console.clear(gameAreaMatrix3);
   console.log(trackArea);
 };
 
 const moveLeft = () => {
   if (coll <= 3) {
-    let tempRight = gameAreaMatrix[row][coll + 1];
-    gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
-    gameAreaMatrix[row][coll] = tempRight;
+    let tempRight = gameAreaMatrix3[row][coll + 1];
+    gameAreaMatrix3[row][coll + 1] = gameAreaMatrix3[row][coll];
+    gameAreaMatrix3[row][coll] = tempRight;
     clearArea();
     console.log('For HELP press H');
   } else {
@@ -61,9 +61,9 @@ const moveLeft = () => {
 
 const moveRight = () => {
   if (coll >= 1) {
-    let tempLeft = gameAreaMatrix[row][coll - 1];
-    gameAreaMatrix[row][coll - 1] = gameAreaMatrix[row][coll];
-    gameAreaMatrix[row][coll] = tempLeft;
+    let tempLeft = gameAreaMatrix3[row][coll - 1];
+    gameAreaMatrix3[row][coll - 1] = gameAreaMatrix3[row][coll];
+    gameAreaMatrix3[row][coll] = tempLeft;
     clearArea();
     console.log('For HELP press H');
   } else {
@@ -74,9 +74,9 @@ const moveRight = () => {
 
 const moveUp = () => {
   if (row <= 3) {
-    let tempDown = gameAreaMatrix[row + 1][coll];
-    gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
-    gameAreaMatrix[row][coll] = tempDown;
+    let tempDown = gameAreaMatrix3[row + 1][coll];
+    gameAreaMatrix3[row + 1][coll] = gameAreaMatrix3[row][coll];
+    gameAreaMatrix3[row][coll] = tempDown;
     clearArea();
     console.log('For HELP press H');
   } else {
@@ -87,9 +87,9 @@ const moveUp = () => {
 
 const moveDown = () => {
   if (row >= 1) {
-    let tempUp = gameAreaMatrix[row - 1][coll];
-    gameAreaMatrix[row - 1][coll] = gameAreaMatrix[row][coll];
-    gameAreaMatrix[row][coll] = tempUp;
+    let tempUp = gameAreaMatrix3[row - 1][coll];
+    gameAreaMatrix3[row - 1][coll] = gameAreaMatrix3[row][coll];
+    gameAreaMatrix3[row][coll] = tempUp;
     clearArea();
     console.log('For HELP press H');
   } else {
@@ -99,9 +99,9 @@ const moveDown = () => {
 };
 
 const findNull = () => {
-  for (row = 0; row < gameAreaMatrix.length; row++) {
-    for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
-      let actualElement = gameAreaMatrix[row][coll];
+  for (row = 0; row < gameAreaMatrix3.length; row++) {
+    for (coll = 0; coll < gameAreaMatrix3[row].length; coll++) {
+      let actualElement = gameAreaMatrix3[row][coll];
       if (actualElement === ' ') {
         return;
       }
@@ -139,15 +139,15 @@ const stepping = () => {
 const end = () => {
   let result = true;
   let number = 1;
-  for (let i = 0; i < gameAreaMatrix.length; i++) {
-    for (let j = 0; j < gameAreaMatrix.length; j++) {
-      if (gameAreaMatrix[i][j] !== number && gameAreaMatrix[i][j] !== ' ') {
+  for (let i = 0; i < gameAreaMatrix3.length; i++) {
+    for (let j = 0; j < gameAreaMatrix3.length; j++) {
+      if (gameAreaMatrix3[i][j] !== number && gameAreaMatrix3[i][j] !== ' ') {
         result = false;
       }
       number++;
     }
   } if (result) {
-    if (gameAreaMatrix[gameAreaMatrix.length - 1][gameAreaMatrix.length - 1] === ' ') {
+    if (gameAreaMatrix3[gameAreaMatrix3.length - 1][gameAreaMatrix3.length - 1] === ' ') {
       result = true;
     } else {
       result = false;
@@ -158,7 +158,7 @@ const end = () => {
 
 const writeifend = () => {
   if (end()) {
-    console.clear(gameAreaMatrix);
+    console.clear(gameAreaMatrix3);
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],

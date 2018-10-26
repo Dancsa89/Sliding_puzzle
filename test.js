@@ -13,8 +13,6 @@ let testArray = [
   [4, 7, 8]
 ];
 
-
-
 const matrix = () => {
   for (let i = 0; i < testArray.length; i++) {
     for (let j = 0; j < testArray.length; j++) {
@@ -126,7 +124,7 @@ const stepping = () => {
       console.log('Wrong order, try again!');
     }
   });
-}
+};
 
 const end = () => {
   let result = true;
