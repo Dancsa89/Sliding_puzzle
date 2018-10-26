@@ -31,10 +31,9 @@ const firsttable = () => {
   console.log(track);
 };
 
-firsttable();
-
 const gameArea = () => {
   matrix();
+  firsttable();
 };
 
 const clearArea = () => {
@@ -92,9 +91,7 @@ const moveDown = () => {
   }
 };
 
-gameArea();
-
-const stepping = () => {
+const findNull = () => {
   for (row = 0; row < testArray.length; row++) {
     for (coll = 0; coll < testArray[row].length; coll++) {
       let actualElement = testArray[row][coll];
@@ -105,24 +102,31 @@ const stepping = () => {
   }
 };
 
-process.stdin.on('keypress', function (c, key) {
-  if (key.name === 'a') {
-    moveLeft();
-    writeifend();
-  } else if (key.name === 'd') {
-    moveRight();
-    writeifend();
-  } else if (key.name === 's') {
-    moveDown();
-    writeifend();
-  } else if (key.name === 'w') {
-    moveUp();
-    writeifend();
-  } else {
-    console.log('Wrong order, try again!');
-  }
-  stepping();
-});
+const stepping = () => {
+  process.stdin.on('keypress', function (c, key) {
+    if (key.name === 'left') {
+      findNull();
+      moveLeft();
+      writeifend();
+    } else if (key.name === 'right') {
+      findNull();
+      moveRight();
+      writeifend();
+    } else if (key.name === 'down') {
+      findNull();
+      moveDown();
+      writeifend();
+    } else if (key.name === 'up') {
+      findNull();
+      moveUp();
+      writeifend();
+    } else if (key.name === 'x') {
+      process.exit(true);
+    } else {
+      console.log('Wrong order, try again!');
+    }
+  });
+}
 
 const end = () => {
   let result = true;
@@ -142,7 +146,25 @@ const end = () => {
 
 const writeifend = () => {
   if (end()) {
-    console.log('You win!');
+    console.clear(testArray);
+    let chooseTable = [
+      ['You solved it!'],
+      ['You are a HERO!'],
+      ['Press X if you would like to try more advance level']
+    ];
+    let chooseTableconfig = {
+      columns: {
+        0: {
+          alignment: 'center'
+        }
+      }
+    };
+    let chooseTableView = tablePackage.table(chooseTable, chooseTableconfig);
+    console.log(chooseTableView);
   }
 };
 
+module.exports = {
+  gameArea,
+  stepping
+};

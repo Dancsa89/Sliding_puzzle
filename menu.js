@@ -1,10 +1,9 @@
 const table = require('table');
-let helping = require('./help');
 let gameThree = require('./3x3table');
 let gameFour = require('./4x4table');
 let gameFive = require('./5x5table');
 let keypress = require('keypress');
-let game;
+let testGame = require('./test');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
@@ -41,21 +40,9 @@ const choose = () => {
       gameFive.stepping();
     } else if (key.name === 'x') {
       process.exit(true);
-    }/* else if (key.name === 'left') {
-			game.findNull();
-			game.moveLeft();
-		} else if (key.name === 'right') {
-			game.findNull();
-			game.moveRight();
-		} else if (key.name === 'down') {
-			game.findNull();
-			game.moveDown();
-		} else if (key.name === 'up') {
-			game.findNull();
-			game.moveUp();
-		}
+    }
   });
-};*/
+};
 
 const start = () => {
   console.clear();
@@ -64,7 +51,7 @@ const start = () => {
     ['Netti Rencsó Dancsa Entertainment'],
     ['@2018'],
     ['Press S to start'],
-    ['For HELP in game press H']
+    ['For TEST press T']
   ];
   let startTableconfig = {
     columns: {
@@ -78,37 +65,18 @@ const start = () => {
   console.log(startTableView);
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 's') {
+      console.clear(startTableView);
       choose();
+    } else if (key.name === 't') {
+      console.clear(startTableView);
+      testGame.gameArea();
+      testGame.stepping();
     } else if (key.name === 'x') {
       process.exit(true);
     }
   });
 };
 
-const choose = () => {
-  let chooseTable = [
-    ['For table 3x3', 'Press a '],
-    ['For table 4x4', 'Press b '],
-    ['For table 5x5', 'Press c ']
-  ];
-  let startTableconfig = {
-    columns: {
-      0: {
-        alignment: 'center'
-      }
-    }
-  };
-
-  let startTableView = table.table(startTabledata, startTableconfig);
-  console.log(startTableView);
-  process.stdin.on('keypress', function (c, key) {
-    if (key.name === 's') {
-      console.clear(startTableView);
-      choose();
-    }
-  });
-};
-
-module.exports = {
+module.exports = { 
   start
 };

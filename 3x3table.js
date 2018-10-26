@@ -1,6 +1,5 @@
 const tablePackage = require('table');
 let help = require('./help');
-//let menu = require('./menu');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -136,27 +135,6 @@ const stepping = () => {
   });
 };
 
-<<<<<<< HEAD:wasd.js
-stepping();
-
-const end = () => {
-  let result = false;
-  let number = 1;
-  for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix.length; j++) {
-      if (matrix[i][j] !== number) {
-        result = false;
-      } if (matrix[i][j] === 0) {
-        result = true;
-      }
-      number++;
-    }
-  } return result;
-};
-
-const writeifend = () => {
-  if (end()) {
-=======
 const end = () => {
   let result = true;
   let number = 1;
@@ -180,16 +158,24 @@ const end = () => {
 const writeifend = (gameAreaMatrix) => {
   if (end()) {
     console.clear(gameAreaMatrix);
->>>>>>> fae8eff32f6343e92e51330cbd81cf0db5fcd11e:3x3table.js
-    console.log('You win!');
+    let chooseTable = [
+      ['You solved it!'],
+      ['You are a HERO!'],
+      ['Press X if you would like to try more advance level']
+    ];
+    let chooseTableconfig = {
+      columns: {
+        0: {
+          alignment: 'center'
+        }
+      }
+    };
+    let chooseTableView = tablePackage.table(chooseTable, chooseTableconfig);
+    console.log(chooseTableView);
   }
 };
 
-<<<<<<< HEAD:wasd.js
-writeifend();
-=======
 module.exports = {
   stepping,
   gameArea
 };
->>>>>>> fae8eff32f6343e92e51330cbd81cf0db5fcd11e:3x3table.js
