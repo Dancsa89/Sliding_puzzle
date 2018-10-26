@@ -47,7 +47,7 @@ const clearArea = () => {
 };
 
 const moveLeft = () => {
-  if (coll <= 0) {
+  if (coll <= 1) {
     let tempRight = gameAreaMatrix1[row][coll + 1];
     gameAreaMatrix1[row][coll + 1] = gameAreaMatrix1[row][coll];
     gameAreaMatrix1[row][coll] = tempRight;
