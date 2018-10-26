@@ -2,12 +2,12 @@ const tablePackage = require('table');
 
 const help = () => {
     let helpTableContent = [
-        ['W', 'Move up'],
-        ['A', 'Move left'],
-        ['S', 'Move Right'],
-        ['D', 'Move Down'],
+        ['Arrow up', 'Move up'],
+        ['Arrow Left', 'Move Left'],
+        ['Arrow Right', 'Move Right'],
+        ['Arriw Down', 'Move Down'],
         ['H', 'Help'],
-        ['End', 'Back to the Main Menu']
+        ['X', 'Exit']
     ];
     let helpTable = tablePackage.table(helpTableContent);
     console.log(helpTable);

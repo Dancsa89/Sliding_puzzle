@@ -1,6 +1,6 @@
 const tablePackage = require('table');
 let help = require('./help');
-let menu = require('./menu');
+//let menu = require('./menu');
 let keypress = require('keypress');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
@@ -113,34 +113,33 @@ const findNull = () => {
 }
 
 const stepping = () => {
-  console.log('For HELP press H');
   process.stdin.on('keypress', function (c, key) {
-    if (key.name == 'left') {
+    if (key.name === 'left') {
       findNull();
       moveLeft();
-    }
-    else if (key.name == 'right') {
+    } else if (key.name === 'right') {
       findNull();
       moveRight();
-    }
-    else if (key.name == 'down') {
+    } else if (key.name === 'down') {
       findNull();
       moveDown();
-    }
-    else if (key.name == 'up') {
+    } else if (key.name === 'up') {
       findNull();
       moveUp();
-    }
-    else if (key.name == 'h') {
+    } else if (key.name === 'h') {
       help();
-    }
-    else if (key.name == 'end') {
-      menu.start();
+    } else if (key.name === 'x') {
+      process.exit(true);
     }
   });
 }
 
 module.exports = {
   gameArea,
-  stepping
+  stepping,
+  moveDown,
+  moveLeft,
+  moveUp,
+  moveRight,
+  findNull
 };
