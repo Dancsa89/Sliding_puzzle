@@ -110,6 +110,7 @@ const findNull = () => {
 };
 
 const stepping = () => {
+  console.log('For HELP press H');
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 'left') {
       findNull();
@@ -174,6 +175,6 @@ const writeifend = () => {
 };
 
 module.exports = {
-  stepping,
-  gameArea
+  gameArea,
+  stepping
 };
