@@ -150,3 +150,26 @@ const stepping = () => {
 }
 
 stepping();
+
+const end = () => {
+  let result = false;
+  let number = 1;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix.length; j++) {
+      if (matrix[i][j] !== number) {
+        result = false;
+      } if (matrix[i][j] === 0) {
+        result = true;
+      }
+      number++;
+    }
+  } return result;
+};
+
+const writeifend = () => {
+  if (end()) {
+    console.log('You win!');
+  }
+};
+
+writeifend();
