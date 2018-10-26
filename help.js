@@ -11,7 +11,7 @@ const help = () => {
     ];
     let helpTable = tablePackage.table(helpTableContent);
     console.log(helpTable);
-    return;
+    return help;
 };
 
 module.exports = help;

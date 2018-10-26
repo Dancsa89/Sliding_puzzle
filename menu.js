@@ -9,7 +9,7 @@ keypress(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
 
-/*const choose = () => {
+const choose = () => {
   let chooseTable = [
     ['For table 3x3', 'Press a '],
     ['For table 4x4', 'Press b '],
@@ -28,21 +28,18 @@ process.stdin.resume();
   console.log(chooseTableView);
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 'a') {
-		game = gameThree;
-		game.gameArea();
+      console.clear(chooseTableView);
+      gameThree.gameArea();
+      gameThree.stepping();
     } else if (key.name === 'b') {
-      game = gameFour;
+      console.clear(chooseTableView);
       gameFour.gameArea();
+      gameFour.stepping();
     } else if (key.name === 'c') {
-      game = gameFive;
+      console.clear(chooseTableView);
       gameFive.gameArea();
-    } /*else if (key.name === 'end') {
-      start();
-  } else if (key.name === 's') {
-      start();
-    } else if (key.name === 'h') {
-		  helping();
-		}	else if (key.name === 'x') {
+      gameFive.stepping();
+    } else if (key.name === 'x') {
       process.exit(true);
     }/* else if (key.name === 'left') {
 			game.findNull();
@@ -61,6 +58,7 @@ process.stdin.resume();
 };*/
 
 const start = () => {
+  console.clear();
   let startTabledata = [
     ['Sliding Puzzle'],
     ['Netti Rencsó Dancsa Entertainment'],
@@ -93,8 +91,7 @@ const choose = () => {
     ['For table 4x4', 'Press b '],
     ['For table 5x5', 'Press c ']
   ];
-
-  let chooseTableconfig = {
+  let startTableconfig = {
     columns: {
       0: {
         alignment: 'center'
@@ -102,20 +99,12 @@ const choose = () => {
     }
   };
 
-  let chooseTableView = table.table(chooseTable, chooseTableconfig);
-  console.log(chooseTableView);
+  let startTableView = table.table(startTabledata, startTableconfig);
+  console.log(startTableView);
   process.stdin.on('keypress', function (c, key) {
-    if (key.name == 'a') {
-			gameThree.gameArea();
-			gameThree.stepping();
-    } else if (key.name == 'b') {
-			gameFour.gameArea();
-			gameFour.stepping();
-    } else if (key.name == 'c') {
-			gameFive.gameArea();
-			gameFive.stepping();
-    } else if (key.name == 'x') {
-      process.exit(true);
+    if (key.name === 's') {
+      console.clear(startTableView);
+      choose();
     }
   });
 };
@@ -123,5 +112,3 @@ const choose = () => {
 module.exports = {
   start
 };
-
-start();

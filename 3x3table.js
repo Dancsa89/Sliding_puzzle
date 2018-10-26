@@ -99,8 +99,6 @@ const moveDown = () => {
   }
 };
 
-//gameArea();
-
 const findNull = () => {
   for (row = 0; row < gameAreaMatrix.length; row++) {
     for (coll = 0; coll < gameAreaMatrix[row].length; coll++) {
@@ -110,36 +108,62 @@ const findNull = () => {
       }
     }
   }
-}
+};
 
 const stepping = () => {
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 'left') {
       findNull();
       moveLeft();
+      writeifend();
     } else if (key.name === 'right') {
       findNull();
       moveRight();
+      writeifend();
     } else if (key.name === 'down') {
       findNull();
       moveDown();
+      writeifend();
     } else if (key.name === 'up') {
       findNull();
       moveUp();
+      writeifend();
     } else if (key.name === 'h') {
       help();
     } else if (key.name === 'x') {
       process.exit(true);
     }
   });
-}
+};
+
+const end = () => {
+  let result = true;
+  let number = 1;
+  for (let i = 0; i < gameAreaMatrix.length; i++) {
+    for (let j = 0; j < gameAreaMatrix.length; j++) {
+      if (gameAreaMatrix[i][j] !== number && gameAreaMatrix[i][j] !== ' ') {
+        result = false;
+      }
+      number++;
+    }
+  } if (result) {
+    if (gameAreaMatrix[gameAreaMatrix.length - 1][gameAreaMatrix.length - 1] === ' ') {
+      result = true;
+    } else {
+      result = false;
+    }
+  }
+  return result;
+};
+
+const writeifend = (gameAreaMatrix) => {
+  if (end()) {
+    console.clear(gameAreaMatrix);
+    console.log('You win!');
+  }
+};
 
 module.exports = {
-  gameArea,
   stepping,
-  moveDown,
-  moveLeft,
-  moveUp,
-  moveRight,
-  findNull
+  gameArea
 };
