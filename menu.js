@@ -3,7 +3,6 @@ let gameThree = require('./3x3table');
 let gameFour = require('./4x4table');
 let gameFive = require('./5x5table');
 let keypress = require('keypress');
-// let gameAll = require('./matrix-generator.js');
 keypress(process.stdin);
 process.stdin.setRawMode(true);
 process.stdin.resume();
@@ -40,8 +39,6 @@ const choose = () => {
       gameFive.stepping();
     } else if (key.name === 'x') {
       process.exit(true);
-    } else if (key.name === 'q') {
-      start();
     }
   });
 };

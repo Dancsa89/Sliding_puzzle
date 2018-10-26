@@ -13,7 +13,7 @@ let row = 0;
 let coll = 0;
 
 const matrix = () => {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 9; i++) {
     possibleNumbers[i] = i;
     if (possibleNumbers[i] === 0) {
       possibleNumbers[i] = ' ';
@@ -23,9 +23,9 @@ const matrix = () => {
 
 const generator = () => {
   matrix();
-  for (let y = 0; y <= 1; y++) {
+  for (let y = 0; y <= 2; y++) {
     gameAreaMatrix[y] = [];
-    for (let x = 0; x <= 1; x++) {
+    for (let x = 0; x <= 2; x++) {
       pickedNumber = Math.floor(Math.random() * (possibleNumbers.length));
       gameAreaMatrix[y][x] = possibleNumbers[pickedNumber];
       possibleNumbers.splice(pickedNumber, 1);
@@ -48,7 +48,7 @@ const clearArea = () => {
 };
 
 const moveLeft = () => {
-  if (coll <= 0) {
+  if (coll <= 1) {
     let tempRight = gameAreaMatrix[row][coll + 1];
     gameAreaMatrix[row][coll + 1] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempRight;
@@ -74,7 +74,7 @@ const moveRight = () => {
 };
 
 const moveUp = () => {
-  if (row <= 0) {
+  if (row <= 1) {
     let tempDown = gameAreaMatrix[row + 1][coll];
     gameAreaMatrix[row + 1][coll] = gameAreaMatrix[row][coll];
     gameAreaMatrix[row][coll] = tempDown;
@@ -156,7 +156,7 @@ const end = () => {
   return result;
 };
 
-const writeifend = () => {
+const writeifend = (gameAreaMatrix) => {
   if (end()) {
     console.clear(gameAreaMatrix);
     console.log('You win!');
@@ -164,6 +164,6 @@ const writeifend = () => {
 };
 
 module.exports = {
-  gameArea,
-  stepping
+  stepping,
+  gameArea
 };

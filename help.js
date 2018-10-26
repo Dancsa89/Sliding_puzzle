@@ -7,7 +7,7 @@ const help = () => {
     ['rightArrow', 'Move Right'],
     ['downArrow', 'Move Down'],
     ['H', 'Help'],
-    ['End', 'Back to the Main Menu']
+    ['X', 'Exit']
   ];
   let helpTable = tablePackage.table(helpTableContent);
   console.log(helpTable);
