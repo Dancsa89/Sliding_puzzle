@@ -5,8 +5,6 @@ let gameFive = require('./5x5table');
 let keypress = require('keypress');
 let testGame = require('./test');
 keypress(process.stdin);
-process.stdin.setRawMode(true);
-process.stdin.resume();
 
 const choose = () => {
   let chooseTable = [

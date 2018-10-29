@@ -1,8 +1,6 @@
 const tablePackage = require('table');
 let keypress = require('keypress');
 keypress(process.stdin);
-process.stdin.setRawMode(true);
-process.stdin.resume();
 
 let row = 0;
 let coll = 0;
@@ -148,7 +146,7 @@ const writeifend = () => {
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],
-      ['Press X if you would like to try more advance level']
+      ['Press X to EXIT']
     ];
     let chooseTableconfig = {
       columns: {

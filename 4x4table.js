@@ -2,8 +2,6 @@ const tablePackage = require('table');
 let help = require('./help');
 let keypress = require('keypress');
 keypress(process.stdin);
-process.stdin.setRawMode(true);
-process.stdin.resume();
 
 let gameAreaMatrix2 = [];
 let pickedNumber;
@@ -159,7 +157,7 @@ const writeifend = () => {
   if (end()) {
     console.clear(gameAreaMatrix2);
     let chooseTable = [
-      ['You solved it!'],
+      ['You are solved it!'],
       ['You are a HERO!'],
       ['Press X if you would like to try a more advance level!']
     ];
