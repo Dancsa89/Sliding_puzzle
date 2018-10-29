@@ -49,7 +49,7 @@ const start = () => {
     ['Netti Rencsó Dancsa Entertainment'],
     ['@2018'],
     ['Press S to start'],
-    ['For TEST press T']
+    ['For TUTORIAL press T']
   ];
   let startTableconfig = {
     columns: {

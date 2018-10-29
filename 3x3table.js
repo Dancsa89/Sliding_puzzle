@@ -1,5 +1,5 @@
 const tablePackage = require('table');
-let help = require('./help');
+const help = require('./help');
 let keypress = require('keypress');
 keypress(process.stdin);
 
@@ -19,7 +19,6 @@ const matrix = () => {
 };
 
 const generator = () => {
-  matrix();
   for (let y = 0; y <= 2; y++) {
     gameAreaMatrix1[y] = [];
     for (let x = 0; x <= 2; x++) {
@@ -113,23 +112,21 @@ const stepping = () => {
     if (key.name === 'left') {
       findNull();
       moveLeft();
-      writeifend();
+      writeIfEnd();
     } else if (key.name === 'right') {
       findNull();
       moveRight();
-      writeifend();
+      writeIfEnd();
     } else if (key.name === 'down') {
       findNull();
       moveDown();
-      writeifend();
+      writeIfEnd();
     } else if (key.name === 'up') {
       findNull();
       moveUp();
-      writeifend();
+      writeIfEnd();
     } else if (key.name === 'h') {
       help();
-    } else if (key.name === 'x') {
-      process.exit(true);
     }
   });
 };
@@ -154,13 +151,13 @@ const end = () => {
   return result;
 };
 
-const writeifend = () => {
+const writeIfEnd = () => {
   if (end()) {
     console.clear(gameAreaMatrix1);
     let chooseTable = [
-      ['You are solved it!'],
+      ['You solved it!'],
       ['You are a HERO!'],
-      ['Press X if you would like to try a more advance level!']
+      ['Press X to EXIT']
     ];
     let chooseTableconfig = {
       columns: {

@@ -99,6 +99,7 @@ const findNull = () => {
 };
 
 const stepping = () => {
+  console.log('To win the game, use the arrow key to move the numbers to ascending order');
   process.stdin.on('keypress', function (c, key) {
     if (key.name === 'left') {
       findNull();
@@ -116,8 +117,6 @@ const stepping = () => {
       findNull();
       moveUp();
       writeifend();
-    } else if (key.name === 'x') {
-      process.exit(true);
     } else {
       console.log('Wrong order, try again!');
     }
