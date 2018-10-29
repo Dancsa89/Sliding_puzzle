@@ -1,4 +1,5 @@
 const tablePackage = require('table');
+const music = require('./sound.js');
 const help = require('./help');
 let keypress = require('keypress');
 keypress(process.stdin);
@@ -50,10 +51,11 @@ const moveLeft = () => {
     gameAreaMatrix3[row][coll + 1] = gameAreaMatrix3[row][coll];
     gameAreaMatrix3[row][coll] = tempRight;
     clearArea();
+    music.step.play();
     console.log('For HELP press H');
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -63,10 +65,11 @@ const moveRight = () => {
     gameAreaMatrix3[row][coll - 1] = gameAreaMatrix3[row][coll];
     gameAreaMatrix3[row][coll] = tempLeft;
     clearArea();
+    music.step.play();
     console.log('For HELP press H');
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -76,10 +79,11 @@ const moveUp = () => {
     gameAreaMatrix3[row + 1][coll] = gameAreaMatrix3[row][coll];
     gameAreaMatrix3[row][coll] = tempDown;
     clearArea();
+    music.step.play();
     console.log('For HELP press H');
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -89,10 +93,11 @@ const moveDown = () => {
     gameAreaMatrix3[row - 1][coll] = gameAreaMatrix3[row][coll];
     gameAreaMatrix3[row][coll] = tempUp;
     clearArea();
+    music.step.play();
     console.log('For HELP press H');
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -155,6 +160,7 @@ const end = () => {
 const writeIfEnd = () => {
   if (end()) {
     console.clear(gameAreaMatrix3);
+    music.win.play();
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],

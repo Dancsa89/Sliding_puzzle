@@ -1,4 +1,5 @@
 const tablePackage = require('table');
+const music = require('./sound.js');
 let keypress = require('keypress');
 keypress(process.stdin);
 
@@ -45,9 +46,10 @@ const moveLeft = () => {
     testArray[row][coll + 1] = testArray[row][coll];
     testArray[row][coll] = tempRight;
     clearArea();
+    music.step.play();
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -57,9 +59,10 @@ const moveRight = () => {
     testArray[row][coll - 1] = testArray[row][coll];
     testArray[row][coll] = tempLeft;
     clearArea();
+    music.step.play();
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -69,9 +72,10 @@ const moveUp = () => {
     testArray[row + 1][coll] = testArray[row][coll];
     testArray[row][coll] = tempDown;
     clearArea();
+    music.step.play();
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -81,9 +85,10 @@ const moveDown = () => {
     testArray[row - 1][coll] = testArray[row][coll];
     testArray[row][coll] = tempUp;
     clearArea();
+    music.step.play();
   } else {
     clearArea();
-    console.log('Wrong Way! Need new order. ');
+    music.error.play();
   }
 };
 
@@ -142,6 +147,7 @@ const end = () => {
 const writeifend = () => {
   if (end()) {
     console.clear(testArray);
+    music.win.play();
     let chooseTable = [
       ['You solved it!'],
       ['You are a HERO!'],
