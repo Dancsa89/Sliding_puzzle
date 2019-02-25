@@ -1,10 +1,11 @@
 {
-  "name": "Slidign Puzzle",
+  "name": "Slidigng Puzzle",
   "version": "0.1.0",
   "description": "",
-  "main": "index.js",
+  "main": "sliding_Puzzle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node sliding_Puzzle.js"
   },
   "repository": {
     "type": "git",
